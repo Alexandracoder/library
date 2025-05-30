@@ -1,11 +1,9 @@
 package org.library;
 
-
-import static org.library.config.DBManager.initConnection;
+import org.library.config.DBManager;
 
 public class Main {
     public static void main(String[] args) {
-        initConnection();
-
+        DBManager.initConnection();
     }
 }

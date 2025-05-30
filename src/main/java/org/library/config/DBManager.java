@@ -7,10 +7,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBManager {
-    private static final Dotenv dotenv = Dotenv.configure().directory("./").load();
-    public static final String URL = dotenv.get("DB_URL");
-    public static final String USER = dotenv.get("DB_USER");
-    public static final String PASSWORD = dotenv.get("DB_PASSWORD");
+
+    private static final Dotenv dotenv = Dotenv.load();
+
+    private static final String URL = dotenv.get("DB_URL");
+    private static final String USER = dotenv.get("DB_USER");
+    private static final String PASSWORD = dotenv.get("DB_PASSWORD");
 
     private static Connection connection;
 
@@ -25,7 +27,7 @@ public class DBManager {
         } catch (SQLException exception) {
             System.out.println("Error de conexión: " + exception.getMessage());
         }
-        return  connection;
+        return connection;
     }
 
     public static void closeConnection() {
@@ -38,5 +40,4 @@ public class DBManager {
             System.out.println("Error al cerrar conexión: " + exception.getMessage());
         }
     }
-
 }
