@@ -55,4 +55,16 @@ public class BookView {
                     + " Genre: " + book.getGenre() + " Year: " + book.getYear());
         }
     }
+
+    public void update() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Please enter ID of the book you wish to update: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        Book updateBook = generateBook();
+
+        bookController.updateBookController(id, updateBook);
+    }
 }
