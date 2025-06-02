@@ -70,4 +70,32 @@ public class BookRepository {
             }
             return books;
         }
-    }
+
+        public void update(int id, Book book) {
+
+            String querySQLUpdate = "UPDATE books SET title = ?, authors = ?, description = ?, isbn = ?, genre = ?, year = ? WHERE id = ?";
+
+            try {
+                connection = DBManager.initConnection();
+
+                PreparedStatement statement = connection.prepareStatement(querySQLUpdate);
+
+                statement.setInt(1, book.getId());
+                statement.setString(2, book.getTitle());
+                statement.setString(3, book.getAuthors());
+                statement.setString(4, book.getDescription());
+                statement.setString(5, book.getIsbn());
+                statement.setString(6, book.getGenre());
+                statement.setInt(7, book.getYear());
+                statement.execute();
+
+                System.out.println("Book updated");
+
+            } catch (SQLException exception) {
+                throw new RuntimeException(exception.getMessage());
+            } finally {
+                DBManager.closeConnection();
+            }
+
+        }
+}
