@@ -20,4 +20,8 @@ public class BookController {
     public List<Book> findAllController() {
         return bookRepository.findAll();
     }
+
+    public void updateBookController(int id, Book book) {
+        bookRepository.update(id, book);
+    }
 }
