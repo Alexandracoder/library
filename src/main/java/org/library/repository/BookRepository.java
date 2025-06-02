@@ -52,6 +52,7 @@ public class BookRepository {
                 ResultSet response = statement.executeQuery();
 
                 while(response.next()) {
+                    int id = response.getInt("id");
                     String title = response.getString("title");
                     String authors = response.getString("authors");
                     String description = response.getString("description");
@@ -80,16 +81,21 @@ public class BookRepository {
 
                 PreparedStatement statement = connection.prepareStatement(querySQLUpdate);
 
-                statement.setInt(1, book.getId());
-                statement.setString(2, book.getTitle());
-                statement.setString(3, book.getAuthors());
-                statement.setString(4, book.getDescription());
-                statement.setString(5, book.getIsbn());
-                statement.setString(6, book.getGenre());
-                statement.setInt(7, book.getYear());
-                statement.execute();
+                statement.setString(1, book.getTitle());
+                statement.setString(2, book.getAuthors());
+                statement.setString(3, book.getDescription());
+                statement.setString(4, book.getIsbn());
+                statement.setString(5, book.getGenre());
+                statement.setInt(6, book.getYear());
+                statement.setInt(7, id);
 
-                System.out.println("Book updated");
+                int rowsUpdated = statement.executeUpdate();
+
+                if (rowsUpdated > 0){
+                    System.out.println("Book updated successfully");
+                } else {
+                    System.out.println("Book not found");
+                }
 
             } catch (SQLException exception) {
                 throw new RuntimeException(exception.getMessage());
