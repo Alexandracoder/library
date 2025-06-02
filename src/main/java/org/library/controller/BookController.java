@@ -24,4 +24,8 @@ public class BookController {
     public void updateBookController(int id, Book book) {
         bookRepository.update(id, book);
     }
+
+    public void deleteBookController(int id, Book book) {
+        bookRepository.delete(id, book);
+    }
 }
