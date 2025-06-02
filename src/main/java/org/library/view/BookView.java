@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class BookView {
     private final BookController bookController;
 
-    public BookController(BookController bookController){
+    public BookView(BookController bookController) {
         this.bookController = bookController;
     }
 
