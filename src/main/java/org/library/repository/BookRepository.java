@@ -105,7 +105,7 @@ public class BookRepository {
 
         }
 
-    public void delete(int id, Book book) {
+    public void delete(int id) {
 
         String querySQLDelete = "DELETE FROM books WHERE id = ?";
 

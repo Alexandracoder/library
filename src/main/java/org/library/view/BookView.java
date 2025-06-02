@@ -66,5 +66,17 @@ public class BookView {
         Book updateBook = generateBook();
 
         bookController.updateBookController(id, updateBook);
+        scanner.close();
+    }
+
+    public void delete() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Please enter ID of the book you wish to delete: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        bookController.deleteBookController(id);
+        scanner.close();
     }
 }

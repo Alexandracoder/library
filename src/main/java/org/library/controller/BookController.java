@@ -25,7 +25,7 @@ public class BookController {
         bookRepository.update(id, book);
     }
 
-    public void deleteBookController(int id, Book book) {
-        bookRepository.delete(id, book);
+    public void deleteBookController(int id) {
+        bookRepository.delete(id);
     }
 }

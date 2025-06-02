@@ -11,6 +11,7 @@ public class Main {
         BookView bookView = new BookView(bookController);
 //        bookView.saveBookView();
         bookView.showBooks();
-        bookView.update();
+        //bookView.update();
+        bookView.delete();
     }
 }
