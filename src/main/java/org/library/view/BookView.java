@@ -16,14 +16,22 @@ public class BookView {
     public void menu() {
         boolean condition = true;
 
-        System.out.println("Welcome to our wonderful library!");
+        System.out.println("======================================");
+        System.out.println("📚 Welcome to our wonderful Library 📚");
+        System.out.println("======================================");
 
         do {
             Scanner scanner = new Scanner(System.in);
 
-            System.out.println("Menu:\n\t 1.List of all books\n\t 2.Add a book\n\t 3.Update details for an existing book\n\t 4.Delete a book\n\t 5.Exit.");
-            System.out.println("Choose an option: ");
+            System.out.println("\n----------- MENU -----------");
+            System.out.println("1. 📖 Show all books");
+            System.out.println("2. ➕ Add a new book");
+            System.out.println("3. ✏️  Update a book");
+            System.out.println("4. ❌ Delete a book");
+            System.out.println("5. 🚪 Exit");
+            System.out.println("----------------------------");
 
+            System.out.println("Choose an option: ");
             int choice = scanner.nextInt();
 
             switch (choice) {
@@ -43,10 +51,10 @@ public class BookView {
                     condition = false;
                     break;
                 default:
-                    System.out.println("Enter a correct number");
+                    System.out.println("❌ Invalid option. Please try again.");
             }
         } while (condition);
-        System.out.println("Bye, see you soon!");
+        System.out.println("👋 Goodbye! Thanks for using our Library.");
     }
 
     public void saveBookView() {
@@ -84,7 +92,7 @@ public class BookView {
         if (proceedWithModification(scanner)) {
             System.out.println(book);
         } else {
-            System.out.println("Add cancelled.");
+            System.out.println("❌ Book not saved.");
         }
         return book;
     }
@@ -93,9 +101,16 @@ public class BookView {
         List<Book> bookList = bookController.findAllController();
 
         for (Book book : bookList) {
-            System.out.println("id: " + book.getId() + "\nTitle: " + book.getTitle() + "\nAuthor(s): " + book.getAuthors() + "\nDescription: " + book.getDescription() + "\nISBN: " + book.getIsbn()
-                    + "\nGenre: " + book.getGenre() + "\nYear: " + book.getYear() + "\n");
-        }
+            System.out.println("----------------------------------------------------");
+            System.out.println("🆔 ID: " + book.getId());
+            System.out.println("📖 Title: " + book.getTitle());
+            System.out.println("✍️ Author(s): " + book.getAuthors());
+            System.out.println("📝 Description: " + book.getDescription());
+            System.out.println("🔢 ISBN: " + book.getIsbn());
+            System.out.println("🏷️ Genre: " + book.getGenre());
+            System.out.println("📅 Year: " + book.getYear());
+        System.out.println("----------------------------------------------------");
+    }
     }
 
     public void update() {
