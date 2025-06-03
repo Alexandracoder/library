@@ -51,8 +51,8 @@ public class BookView {
         List<Book> bookList = bookController.findAllController();
 
         for (Book book : bookList) {
-            System.out.println("Title: " + book.getTitle() + " Author(s): " + book.getAuthors() + " Description: " + book.getDescription() + " ISBN: " + book.getIsbn()
-                    + " Genre: " + book.getGenre() + " Year: " + book.getYear());
+            System.out.println("id: " + book.getId() + "\nTitle: " + book.getTitle() + "\nAuthor(s): " + book.getAuthors() + "\nDescription: " + book.getDescription() + "\nISBN: " + book.getIsbn()
+                    + "\nGenre: " + book.getGenre() + "\nYear: " + book.getYear() + "\n");
         }
     }
 
