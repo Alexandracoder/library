@@ -62,13 +62,49 @@ public class BookView {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Please enter ID of the book you wish to update: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
+        int id = Integer.parseInt(scanner.nextLine());
 
-        Book updateBook = generateBook();
+        List<Book> allBooks = bookController.findAllController();
+        Book updateBook = allBooks.stream().filter(b -> b.getId() == id).findFirst().orElse(null);
+
+        if (updateBook == null) {
+            System.out.println("Book not found.");
+            return;
+        }
+
+        System.out.println("Press Enter to keep the current value.\n");
+
+        System.out.println("Current title: " + updateBook.getTitle());
+        System.out.print("New title: ");
+        String title = scanner.nextLine();
+        if (!title.isEmpty()) updateBook.setTitle(title);
+
+        System.out.println("Current authors: " + updateBook.getAuthors());
+        System.out.print("New authors: ");
+        String authors = scanner.nextLine();
+        if (!authors.isEmpty()) updateBook.setAuthors(authors);
+
+        System.out.println("Current description: " + updateBook.getDescription());
+        System.out.print("New description: ");
+        String description = scanner.nextLine();
+        if (!description.isEmpty()) updateBook.setDescription(description);
+
+        System.out.println("Current ISBN: " + updateBook.getIsbn());
+        System.out.print("New ISBN: ");
+        String isbn = scanner.nextLine();
+        if (!isbn.isEmpty()) updateBook.setIsbn(isbn);
+
+        System.out.println("Current genre: " + updateBook.getGenre());
+        System.out.print("New genre: ");
+        String genre = scanner.nextLine();
+        if (!genre.isEmpty()) updateBook.setGenre(genre);
+
+        System.out.println("Current year: " + updateBook.getYear());
+        System.out.print("New year: ");
+        String yearInput = scanner.nextLine();
+        if (!yearInput.isEmpty()) updateBook.setYear(Integer.parseInt(yearInput));
 
         bookController.updateBookController(id, updateBook);
-        scanner.close();
     }
 
     public void delete() {
