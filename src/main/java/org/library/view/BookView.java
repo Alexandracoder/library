@@ -4,7 +4,10 @@ import org.library.controller.BookController;
 import org.library.model.Book;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
+
+import static com.sun.tools.javac.jvm.ByteCodes.ret;
 
 public class BookView {
     private final BookController bookController;
@@ -116,7 +119,17 @@ public class BookView {
         int id = scanner.nextInt();
         scanner.nextLine();
 
-        bookController.deleteBookController(id);
-        scanner.close();
+
+        if (confirmDetailsCorrect(scanner)) {
+            bookController.deleteBookController(id);
+        } else {
+            System.out.println("Delete cancelled.");
+        }
+    }
+
+    public boolean confirmDetailsCorrect(Scanner scanner) {
+        System.out.println("Do you want to proceed with this modification? (y/n): ");
+        String confirmation = scanner.nextLine().toLowerCase();
+        return confirmation.equals("y") || confirmation.equals("yes");
     }
 }
