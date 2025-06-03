@@ -13,6 +13,42 @@ public class BookView {
         this.bookController = bookController;
     }
 
+    public void menu() {
+        boolean condition = true;
+
+        System.out.println("Welcome to our wonderful library!");
+
+        do {
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Menu:\n\t 1.List of all books\n\t 2.Add a book\n\t 3.Update details for an existing book\n\t 4.Delete a book\n\t 5.Exit.");
+            System.out.println("Choose an option: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    showBooks();
+                    break;
+                case 2:
+                    generateBook();
+                    break;
+                case 3:
+                    update();
+                    break;
+                case 4:
+                    delete();
+                    break;
+                case 5:
+                    condition = false;
+                    break;
+                default:
+                    System.out.println("Enter a correct number");
+            }
+        } while (condition);
+        System.out.println("Bye, see you soon!");
+    }
+
     public void saveBookView() {
         Book book = generateBook();
 

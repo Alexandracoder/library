@@ -9,9 +9,7 @@ public class Main {
         BookRepository bookRepository = new BookRepository();
         BookController bookController = new BookController(bookRepository);
         BookView bookView = new BookView(bookController);
-        bookView.saveBookView();
-        bookView.showBooks();
-        bookView.update();
-        bookView.delete();
+
+        bookView.menu();
     }
 }
