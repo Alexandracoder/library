@@ -22,6 +22,8 @@ public class BookView {
     public Book generateBook() {
         Scanner scanner = new Scanner(System.in);
 
+        int id = 0;
+
         System.out.println("Please enter the title of the book: ");
         String title = scanner.nextLine();
 
@@ -40,7 +42,7 @@ public class BookView {
         System.out.println("Please enter the year of publication: ");
         int year = scanner.nextInt();
 
-        Book book = new Book(title, authors, description, isbn, genre, year);
+        Book book = new Book(id, title, authors, description, isbn, genre, year);
 
         scanner.close();
 
