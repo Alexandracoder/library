@@ -4,10 +4,7 @@ import org.library.controller.BookController;
 import org.library.model.Book;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
-
-import static com.sun.tools.javac.jvm.ByteCodes.ret;
 
 public class BookView {
     private final BookController bookController;
@@ -44,11 +41,15 @@ public class BookView {
 
         System.out.println("Please enter the year of publication: ");
         int year = scanner.nextInt();
+        scanner.nextLine();
 
         Book book = new Book(id, title, authors, description, isbn, genre, year);
 
-        scanner.close();
-
+        if (proceedWithModification(scanner)) {
+            System.out.println(book);
+        } else {
+            System.out.println("Add cancelled.");
+        }
         return book;
     }
 
@@ -107,9 +108,12 @@ public class BookView {
         String yearInput = scanner.nextLine();
         if (!yearInput.isEmpty()) updateBook.setYear(Integer.parseInt(yearInput));
 
-        bookController.updateBookController(id, updateBook);
 
-        scanner.close();
+        if (proceedWithModification(scanner)) {
+            bookController.updateBookController(id, updateBook);
+        } else {
+            System.out.println("Update cancelled.");
+        }
     }
 
     public void delete() {
@@ -119,15 +123,14 @@ public class BookView {
         int id = scanner.nextInt();
         scanner.nextLine();
 
-
-        if (confirmDetailsCorrect(scanner)) {
+        if (proceedWithModification(scanner)) {
             bookController.deleteBookController(id);
         } else {
             System.out.println("Delete cancelled.");
         }
     }
 
-    public boolean confirmDetailsCorrect(Scanner scanner) {
+    public boolean proceedWithModification(Scanner scanner) {
         System.out.println("Do you want to proceed with this modification? (y/n): ");
         String confirmation = scanner.nextLine().toLowerCase();
         return confirmation.equals("y") || confirmation.equals("yes");
