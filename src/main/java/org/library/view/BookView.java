@@ -105,6 +105,8 @@ public class BookView {
         if (!yearInput.isEmpty()) updateBook.setYear(Integer.parseInt(yearInput));
 
         bookController.updateBookController(id, updateBook);
+
+        scanner.close();
     }
 
     public void delete() {
