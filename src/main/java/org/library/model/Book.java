@@ -9,7 +9,8 @@ public class Book {
     private String genre;
     private int year;
 
-    public Book(String title, String authors, String description, String isbn, String genre, int year) {
+    public Book(int id, String title, String authors, String description, String isbn, String genre, int year) {
+        this.id = id;
         this.title = title;
         this.authors = authors;
         this.description = description;
