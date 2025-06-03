@@ -18,14 +18,13 @@ public class DBManager {
 
     public static Connection initConnection() {
         if (URL == null || USER == null || PASSWORD == null) {
-            throw new RuntimeException("Variables de entorno no configuradas correctamente");
+            throw new RuntimeException("Environment variables not configured correctly");
         }
 
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Conexión exitosa");
         } catch (SQLException exception) {
-            System.out.println("Error de conexión: " + exception.getMessage());
+            System.out.println("Connection error: " + exception.getMessage());
         }
         return connection;
     }
@@ -34,10 +33,9 @@ public class DBManager {
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();
-                System.out.println("Conexión cerrada correctamente");
             }
         } catch (SQLException exception) {
-            System.out.println("Error al cerrar conexión: " + exception.getMessage());
+            System.out.println("Error on closing connection: " + exception.getMessage());
         }
     }
 }
