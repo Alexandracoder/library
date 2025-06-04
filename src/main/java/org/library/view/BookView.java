@@ -66,24 +66,25 @@ public class BookView {
     public Book generateBook() {
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("\n📘 Enter Book Details");
         int id = 0;
 
-        System.out.println("Please enter the title of the book: ");
+        System.out.println("Title: ");
         String title = scanner.nextLine();
 
-        System.out.println("Please enter the name(s) of the author(s): ");
+        System.out.println("Author(s): ");
         String authors = scanner.nextLine();
 
-        System.out.println("Please enter the description: ");
+        System.out.println("Description (max 200 chars): ");
         String description = scanner.nextLine();
 
-        System.out.println("Please enter the ISBN: ");
+        System.out.println("ISBN: ");
         String isbn = scanner.nextLine();
 
-        System.out.println("Please enter the genre: ");
+        System.out.println("Genre: ");
         String genre = scanner.nextLine();
 
-        System.out.println("Please enter the year of publication: ");
+        System.out.println("Year of publication: ");
         int year = scanner.nextInt();
         scanner.nextLine();
 
