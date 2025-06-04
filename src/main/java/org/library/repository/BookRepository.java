@@ -1,8 +1,6 @@
 package org.library.repository;
-
 import org.library.config.DBManager;
 import org.library.model.Book;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -106,7 +104,6 @@ public class BookRepository {
             } finally {
                 DBManager.closeConnection();
             }
-
         }
 
     public void delete(int id) {

@@ -70,16 +70,4 @@ public class Book {
     public void setYear(int year) {
         this.year = year;
     }
-
-    @Override
-    public String toString() {
-        return "\n----------------------------------------------------\n" +
-                "📖 Title: " + this.title + '\n' +
-                "✍️ Author(s): " + this.authors + '\n' +
-                "📝 Description: " + this.description + '\n' +
-                "🔢 ISBN: " + this.isbn + '\n' +
-                "🏷️ Genre: " + this.genre + '\n' +
-                "📅 Year: " + this.year + '\n' +
-                "----------------------------------------------------";
-    }
 }
