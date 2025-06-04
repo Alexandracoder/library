@@ -39,7 +39,7 @@ public class BookView {
                     showBooks();
                     break;
                 case 2:
-                    generateBook();
+                    saveBookView();
                     break;
                 case 3:
                     update();
