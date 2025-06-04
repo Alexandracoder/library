@@ -1,8 +1,6 @@
 package org.library.view;
-
 import org.library.controller.BookController;
 import org.library.model.Book;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -58,7 +56,7 @@ public class BookView {
                     System.out.println(RED + "Invalid option. Please try again." + RESET);
             }
         } while (condition);
-        System.out.println("Goodbye! Thanks for using our Library.");
+        System.out.println(BLUE + "Goodbye! Thanks for using our Library." + RESET);
     }
 
     public void saveBookView() {
@@ -98,9 +96,7 @@ public class BookView {
         int year = scanner.nextInt();
         scanner.nextLine();
 
-        Book book = new Book(id, title, authors, description, isbn, genre, year);
-
-        return book;
+        return new Book(id, title, authors, description, isbn, genre, year);
     }
 
     public void showBooks() {
@@ -116,7 +112,7 @@ public class BookView {
             System.out.println("Genre: " + book.getGenre());
             System.out.println("Year: " + book.getYear());
         System.out.println("----------------------------------------------------");
-    }
+        }
     }
 
     public void update() {
@@ -164,7 +160,6 @@ public class BookView {
         System.out.print("New year: ");
         String yearInput = scanner.nextLine();
         if (!yearInput.isEmpty()) updateBook.setYear(Integer.parseInt(yearInput));
-
 
         if (proceedWithModification(scanner)) {
             bookController.updateBookController(id, updateBook);
