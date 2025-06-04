@@ -12,6 +12,10 @@ import java.util.List;
 
 public class BookRepository {
 
+        private static final String RESET = "\u001B[0m";
+        private static final String RED = "\u001B[31m";
+        private static final String GREEN = "\u001B[92m";
+
         private Connection connection;
 
         public void saveBook(Book book) {
@@ -31,7 +35,7 @@ public class BookRepository {
                 statement.setInt(6, book.getYear());
                 statement.execute();
 
-                System.out.println("✅ Book created");
+                System.out.println(GREEN + "Book created" + RESET);
 
             } catch (SQLException exception) {
                 throw new RuntimeException(exception.getMessage());
@@ -92,9 +96,9 @@ public class BookRepository {
                 int rowsUpdated = statement.executeUpdate();
 
                 if (rowsUpdated > 0){
-                    System.out.println("✅ Book updated successfully");
+                    System.out.println(GREEN + "Book updated successfully" + RESET);
                 } else {
-                    System.out.println("❌ Book not found");
+                    System.out.println(RED + "Book not found" + RESET);
                 }
 
             } catch (SQLException exception) {
@@ -119,9 +123,9 @@ public class BookRepository {
             int rowsDeleted = statement.executeUpdate();
 
             if (rowsDeleted > 0) {
-                System.out.println("✅ Book deleted successfully");
+                System.out.println(GREEN + "Book deleted successfully" + RESET);
             } else {
-                System.out.println("❌ Book not found");
+                System.out.println(RED + "Book not found" + RESET);
             }
 
         } catch (SQLException exception) {

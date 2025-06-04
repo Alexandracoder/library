@@ -9,6 +9,11 @@ import java.util.Scanner;
 public class BookView {
     private final BookController bookController;
 
+    private static final String RESET = "\u001B[0m";
+    private static final String RED = "\u001B[31m";
+    private static final String GREEN = "\u001B[92m";
+    private static final String BLUE = "\u001B[36m";
+
     public BookView(BookController bookController) {
         this.bookController = bookController;
     }
@@ -16,20 +21,20 @@ public class BookView {
     public void menu() {
         boolean condition = true;
 
-        System.out.println("======================================");
-        System.out.println("📚 Welcome to our wonderful Library 📚");
-        System.out.println("======================================");
+        System.out.println(BLUE + "======================================");
+        System.out.println("   Welcome to our wonderful Library  ");
+        System.out.println( "======================================" + RESET);
 
         do {
             Scanner scanner = new Scanner(System.in);
 
-            System.out.println("\n----------- MENU -----------");
-            System.out.println("1. 📖 Show all books");
-            System.out.println("2. ➕ Add a new book");
-            System.out.println("3. ✏️  Update a book");
-            System.out.println("4. ❌ Delete a book");
-            System.out.println("5. 🚪 Exit");
-            System.out.println("----------------------------");
+            System.out.println(BLUE + "\n----------- MENU -----------" + RESET);
+            System.out.println("\t1. Show all books");
+            System.out.println("\t2. Add a new book");
+            System.out.println("\t3. Update a book");
+            System.out.println("\t4. Delete a book");
+            System.out.println("\t5. Exit");
+            System.out.println(BLUE + "----------------------------" + RESET);
 
             System.out.println("Choose an option: ");
             int choice = scanner.nextInt();
@@ -51,10 +56,10 @@ public class BookView {
                     condition = false;
                     break;
                 default:
-                    System.out.println("❌ Invalid option. Please try again.");
+                    System.out.println(RED + "Invalid option. Please try again." + RESET);
             }
         } while (condition);
-        System.out.println("👋 Goodbye! Thanks for using our Library.");
+        System.out.println("Goodbye! Thanks for using our Library.");
     }
 
     public void saveBookView() {
@@ -65,14 +70,14 @@ public class BookView {
         if (proceedWithModification(scanner)) {
             bookController.saveBookController(book);
         } else {
-            System.out.println("❌ Book not saved.");
+            System.out.println(RED + "Book not saved." + RESET);
         }
     }
 
     public Book generateBook() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\n📘 Enter Book Details");
+        System.out.println("\nEnter Book Details");
         int id = 0;
 
         System.out.println("Title: ");
@@ -104,13 +109,13 @@ public class BookView {
 
         for (Book book : bookList) {
             System.out.println("----------------------------------------------------");
-            System.out.println("🆔 ID: " + book.getId());
-            System.out.println("📖 Title: " + book.getTitle());
-            System.out.println("✍️ Author(s): " + book.getAuthors());
-            System.out.println("📝 Description: " + book.getDescription());
-            System.out.println("🔢 ISBN: " + book.getIsbn());
-            System.out.println("🏷️ Genre: " + book.getGenre());
-            System.out.println("📅 Year: " + book.getYear());
+            System.out.println("ID: " + book.getId());
+            System.out.println("Title: " + book.getTitle());
+            System.out.println("Author(s): " + book.getAuthors());
+            System.out.println("Description: " + book.getDescription());
+            System.out.println("ISBN: " + book.getIsbn());
+            System.out.println("Genre: " + book.getGenre());
+            System.out.println("Year: " + book.getYear());
         System.out.println("----------------------------------------------------");
     }
     }
@@ -125,7 +130,7 @@ public class BookView {
         Book updateBook = allBooks.stream().filter(b -> b.getId() == id).findFirst().orElse(null);
 
         if (updateBook == null) {
-            System.out.println("❌ Book not found.");
+            System.out.println(RED + "Book not found." + RESET);
             return;
         }
 
@@ -165,7 +170,7 @@ public class BookView {
         if (proceedWithModification(scanner)) {
             bookController.updateBookController(id, updateBook);
         } else {
-            System.out.println("❌ Update cancelled.");
+            System.out.println(RED + "Update cancelled." + RESET);
         }
     }
 
@@ -179,7 +184,7 @@ public class BookView {
         if (proceedWithModification(scanner)) {
             bookController.deleteBookController(id);
         } else {
-            System.out.println("❌ Delete cancelled.");
+            System.out.println(RED + "Delete cancelled." + RESET);
         }
     }
 
