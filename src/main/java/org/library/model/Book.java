@@ -74,7 +74,6 @@ public class Book {
     @Override
     public String toString() {
         return "\n----------------------------------------------------\n" +
-                "🆔 ID: " + this.id + "\n" +
                 "📖 Title: " + this.title + '\n' +
                 "✍️ Author(s): " + this.authors + '\n' +
                 "📝 Description: " + this.description + '\n' +
