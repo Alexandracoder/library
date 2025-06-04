@@ -58,9 +58,15 @@ public class BookView {
     }
 
     public void saveBookView() {
+        Scanner scanner = new Scanner(System.in);
+
         Book book = generateBook();
 
-        bookController.saveBookController(book);
+        if (proceedWithModification(scanner)) {
+            bookController.saveBookController(book);
+        } else {
+            System.out.println("❌ Book not saved.");
+        }
     }
 
     public Book generateBook() {
@@ -90,11 +96,6 @@ public class BookView {
 
         Book book = new Book(id, title, authors, description, isbn, genre, year);
 
-        if (proceedWithModification(scanner)) {
-            System.out.println(book);
-        } else {
-            System.out.println("❌ Book not saved.");
-        }
         return book;
     }
 
@@ -124,7 +125,7 @@ public class BookView {
         Book updateBook = allBooks.stream().filter(b -> b.getId() == id).findFirst().orElse(null);
 
         if (updateBook == null) {
-            System.out.println("Book not found.");
+            System.out.println("❌ Book not found.");
             return;
         }
 
@@ -164,7 +165,7 @@ public class BookView {
         if (proceedWithModification(scanner)) {
             bookController.updateBookController(id, updateBook);
         } else {
-            System.out.println("Update cancelled.");
+            System.out.println("❌ Update cancelled.");
         }
     }
 
@@ -178,7 +179,7 @@ public class BookView {
         if (proceedWithModification(scanner)) {
             bookController.deleteBookController(id);
         } else {
-            System.out.println("Delete cancelled.");
+            System.out.println("❌ Delete cancelled.");
         }
     }
 

@@ -31,7 +31,7 @@ public class BookRepository {
                 statement.setInt(6, book.getYear());
                 statement.execute();
 
-                System.out.println("Book created");
+                System.out.println("✅ Book created");
 
             } catch (SQLException exception) {
                 throw new RuntimeException(exception.getMessage());
@@ -92,9 +92,9 @@ public class BookRepository {
                 int rowsUpdated = statement.executeUpdate();
 
                 if (rowsUpdated > 0){
-                    System.out.println("Book updated successfully");
+                    System.out.println("✅ Book updated successfully");
                 } else {
-                    System.out.println("Book not found");
+                    System.out.println("❌ Book not found");
                 }
 
             } catch (SQLException exception) {
@@ -119,9 +119,9 @@ public class BookRepository {
             int rowsDeleted = statement.executeUpdate();
 
             if (rowsDeleted > 0) {
-                System.out.println("Book deleted successfully");
+                System.out.println("✅ Book deleted successfully");
             } else {
-                System.out.println("Book not found");
+                System.out.println("❌ Book not found");
             }
 
         } catch (SQLException exception) {
