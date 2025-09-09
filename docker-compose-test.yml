@@ -1,0 +1,45 @@
+services:
+  # MySQL database for tests
+  test-db:
+    image: mysql:8.0
+    container_name: test-db
+    environment:
+      MYSQL_DATABASE: library_db
+      MYSQL_USER: library
+      MYSQL_PASSWORD: library
+      MYSQL_ROOT_PASSWORD: root
+    restart: "no"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "library", "-plibrary"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - test-network
+
+  # Maven test container
+  test:
+    image: maven:3.9.11-eclipse-temurin-21
+    working_dir: /src
+    volumes:
+      - type: bind
+        source: .
+        target: /src
+    entrypoint: ["mvn", "clean", "verify", "--no-transfer-progress"]
+    container_name: test
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://test-db:3306/library_db
+      SPRING_DATASOURCE_USERNAME: library
+      SPRING_DATASOURCE_PASSWORD: library
+    restart: "no"
+    depends_on:
+      test-db:
+        condition: service_healthy
+    networks:
+      - test-network
+
+networks:
+  test-network:
+    driver: bridge
+
